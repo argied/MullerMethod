@@ -102,11 +102,6 @@ public class Muller {
 			
 			
 			//for 2nd table
-			f = new Function ("f(x) = "+function); 
-			x0 = new Argument ("x = "+xValue0);
-			x1 = new Argument ("x = "+xValue1);
-			x2 = new Argument ("x = "+xValue2);
-
 			f0 = new Expression ("f(x)", f, x0);
 			f1 = new Expression ("f(x)", f, x1);
 			f2 = new Expression ("f(x)", f, x2);	

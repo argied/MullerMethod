@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Muller {
 	
-	//a static method to round decimals in a specific place
 		static double round(double value, int places) {
 			if (places < 0) throw new IllegalArgumentException();
 			BigDecimal bd = new BigDecimal(Double.toString(value));
@@ -15,31 +14,30 @@ public class Muller {
 			return bd.doubleValue();
 			}
 	
-	//this is the main program
 		public static void main (String [] args) {		
 			Scanner input = new Scanner(System.in);
 			DecimalFormat df = new DecimalFormat("#.####"); 
 			df.setRoundingMode(RoundingMode.HALF_UP);
 			        
 			System.out.print("Enter function: ");
-			String function = input.nextLine();//input function
+			String function = input.nextLine();
 			System.out.print("Enter value of x0: ");
-			String xValue0 = input.nextLine();//your x0 but in string
+			String xValue0 = input.nextLine();
 			System.out.print("Enter value of x1: ");
-			String xValue1 = input.nextLine();//your x0 but in string
+			String xValue1 = input.nextLine();
 			System.out.print("Enter value of x2: ");
-			String xValue2 = input.nextLine();//your x0 but in string
+			String xValue2 = input.nextLine();
 			System.out.print("Enter value of Ea: ");
-			double ea = input.nextDouble();//absolute error 
+			double ea = input.nextDouble();
 
 			Function f = new Function ("f(x) = "+function); 
 			Argument x0 = new Argument ("x = "+xValue0);
 			Argument x1 = new Argument ("x = "+xValue1);
 			Argument x2 = new Argument ("x = "+xValue2);
 
-			Expression f0 = new Expression ("f(x)", f, x0);//parsing original function
-			Expression f1 = new Expression ("f(x)", f, x1);//parsing original function
-			Expression f2 = new Expression ("f(x)", f, x2);//parsing original function			
+			Expression f0 = new Expression ("f(x)", f, x0);
+			Expression f1 = new Expression ("f(x)", f, x1);
+			Expression f2 = new Expression ("f(x)", f, x2);			
 
 			System.out.print("\n----------------------------------------------------------------------------------------");
 			System.out.printf("\n%s%7s%9s%10s%10s%10s%10s%10s%10s", "Iteration", "x0", "x1", "x2", "f(x0)", "f(x1)", "f(x2)", "h0","h1");
@@ -64,13 +62,9 @@ public class Muller {
 			if (b<=0)bd = round(b,4)-round(d,4);
 			double xx3 = xx2+((-2*round(c,4))/(round(bd,4)));
 			double Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
-
-
 			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));
-
-			//System.out.printf("%46d%15s%15s%15s%15s\n", 1, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()));
 			int i =2;
-			while (Ea>ea) {//looping the iterations from 2 to nth
+			while (Ea>ea) {
 				String newX0 = String.valueOf(round(xx1, 4));
 				String newX1 = String.valueOf(round(xx2, 4));
 				String newX2 = String.valueOf(round(xx3, 4));
@@ -78,12 +72,15 @@ public class Muller {
 				Argument test0= new Argument ("x = "+newX0);
 				Argument test1= new Argument ("x = "+newX1);
 				Argument test2= new Argument ("x = "+newX2);
-				f0 = new Expression ("f(x)", f, test0);//parsing original function
-				f1 = new Expression ("f(x)", f, test1);//parsing original function
-				f2 = new Expression ("f(x)", f, test2);//parsing original function
+				
+				f0 = new Expression ("f(x)", f, test0);
+				f1 = new Expression ("f(x)", f, test1);
+				f2 = new Expression ("f(x)", f, test2);
+				
 				xx0=xx1;
 				xx1=xx2;
-				xx2 = xx3;			
+				xx2 = xx3;	
+				
 				h0 = xx1-xx0;
 				h1 = xx2-xx1;
 				d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
@@ -96,26 +93,28 @@ public class Muller {
 				
 				if (b>=0)bd = round(b,4)+round(d,4);
 				if (b<=0)bd = round(b,4)-round(d,4);
-				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));
+				
+				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));				
 				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 
 				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));
 				i++;            
 				if (i>100) break;
-				if (Ea ==0)break;
+				if (Ea == 0)break;
 			}
 			System.out.print("----------------------------------------------------------------------------------------");
 			
-			//for 2nd table
 			
+			
+			//for 2nd table
 			f = new Function ("f(x) = "+function); 
 			x0 = new Argument ("x = "+xValue0);
 			x1 = new Argument ("x = "+xValue1);
 			x2 = new Argument ("x = "+xValue2);
 
-			f0 = new Expression ("f(x)", f, x0);//parsing original function
-			f1 = new Expression ("f(x)", f, x1);//parsing original function
-			f2 = new Expression ("f(x)", f, x2);//parsing original function			
+			f0 = new Expression ("f(x)", f, x0);
+			f1 = new Expression ("f(x)", f, x1);
+			f2 = new Expression ("f(x)", f, x2);			
 
 			System.out.print("\n\n----------------------------------------------------------------------------------------");
 			System.out.printf("\n%s%7s%9s%10s%10s%10s%10s%10s%10s", "Iteration","d0", "d1", "a", "b", "c", "d", "x3", "Ea");
@@ -141,7 +140,7 @@ public class Muller {
 			Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));
 			i = 2;
-			while (Ea>ea) {//looping the iterations from 2 to nth
+			while (Ea>ea) {
 				String newX0 = String.valueOf(round(xx1, 4));
 				String newX1 = String.valueOf(round(xx2, 4));
 				String newX2 = String.valueOf(round(xx3, 4));
@@ -149,12 +148,15 @@ public class Muller {
 				Argument test0= new Argument ("x = "+newX0);
 				Argument test1= new Argument ("x = "+newX1);
 				Argument test2= new Argument ("x = "+newX2);
-				f0 = new Expression ("f(x)", f, test0);//parsing original function
-				f1 = new Expression ("f(x)", f, test1);//parsing original function
-				f2 = new Expression ("f(x)", f, test2);//parsing original function
+				
+				f0 = new Expression ("f(x)", f, test0);
+				f1 = new Expression ("f(x)", f, test1);
+				f2 = new Expression ("f(x)", f, test2);
+				
 				xx0=xx1;
 				xx1=xx2;
-				xx2 = xx3;			
+				xx2 = xx3;		
+				
 				h0 = xx1-xx0;
 				h1 = xx2-xx1;
 				d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
@@ -167,21 +169,19 @@ public class Muller {
 				
 				if (b>=0)bd = round(b,4)+round(d,4);
 				if (b<=0)bd = round(b,4)-round(d,4);
+				
 				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));
 				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 
 				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));
 				i++;            
 				if (i>100) break;
-				if (Ea ==0)break;
+				if (Ea == 0)break;
 			}
 			System.out.print("----------------------------------------------------------------------------------------");
-			System.out.print("\nThe root is approximately "+df.format(xx3));//displaying the approximate value of x
-			
-			
+			System.out.print("\nThe root is approximately "+df.format(xx3));
+						
 			input.close();
 			
-		}
-
-		
 	}
+}

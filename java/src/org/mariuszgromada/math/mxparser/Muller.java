@@ -38,9 +38,9 @@ public class Muller {
 			Expression f1 = new Expression ("f(x)", f, x1);
 			Expression f2 = new Expression ("f(x)", f, x2);			
 
-			System.out.print("\n--------------------------------------------------------------------------------------------------------------------------------");
-			System.out.printf("\n%s%11s%15s%15s%15s%15s%15s%15s%15s", "Iteration", "x0", "x1", "x2", "f(x0)", "f(x1)", "f(x2)", "h0","h1");
-			System.out.print("\n--------------------------------------------------------------------------------------------------------------------------------");
+			System.out.print("\n---------------------------------------------------------------------------------------------");
+			System.out.printf("\n%s%11s%10s%10s%10s%10s%10s%10s%10s", "Iteration", "x0", "x1", "x2", "f(x0)", "f(x1)", "f(x2)", "h0","h1");
+			System.out.print("\n---------------------------------------------------------------------------------------------");
 
 			double xx0 = Double.valueOf(xValue0);
 			double xx1 = Double.valueOf(xValue1);
@@ -60,7 +60,7 @@ public class Muller {
 			if (b<=0)bd = rnd(b,4)-rnd(d,4);
 			double xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
 			double Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
-			System.out.printf("\n%5d%15s%15s%15s%15s%15s%15s%15s%15s\n", 1, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
+			System.out.printf("\n%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
 			for (int i = 2; Ea>ea;i++) {
 				String newX0 = String.valueOf(rnd(xx1, 4));
 				String newX1 = String.valueOf(rnd(xx2, 4));
@@ -94,20 +94,20 @@ public class Muller {
 				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));
 				Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
-				System.out.printf("%5d%15s%15s%15s%15s%15s%15s%15s%15s\n", i, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
+				System.out.printf("%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
 				if (i>100) break;
 				if (Ea == 0)break;
 			}
-			System.out.print("--------------------------------------------------------------------------------------------------------------------------------");
+			System.out.print("---------------------------------------------------------------------------------------------");
 			
 			
 			//for 2nd table
 			f0 = new Expression ("f(x)", f, x0);
 			f1 = new Expression ("f(x)", f, x1);
 			f2 = new Expression ("f(x)", f, x2);	
-			System.out.print("\n\n--------------------------------------------------------------------------------------------------------------------------------");
-			System.out.printf("\n%s%11s%15s%15s%15s%15s%15s%15s%15s", "Iteration","d0", "d1", "a", "b", "c", "d", "x3", "Ea");
-			System.out.print("\n--------------------------------------------------------------------------------------------------------------------------------");
+			System.out.print("\n\n---------------------------------------------------------------------------------------------");
+			System.out.printf("\n%s%11s%10s%10s%10s%10s%10s%10s%10s", "Iteration","d0", "d1", "a", "b", "c", "d", "x3", "Ea");
+			System.out.print("\n---------------------------------------------------------------------------------------------");
 
 			xx0 = Double.valueOf(xValue0);
 			xx1 = Double.valueOf(xValue1);
@@ -127,7 +127,7 @@ public class Muller {
 			if (b<=0)bd = rnd(b,4)-rnd(d,4);
 			xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
 			Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
-			System.out.printf("\n%5d%15s%15s%15s%15s%15s%15s%15s%15s\n", 1, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
+			System.out.printf("\n%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
 			for (int i = 2; Ea>ea;i++) {
 				String newX0 = String.valueOf(rnd(xx1, 4));
 				String newX1 = String.valueOf(rnd(xx2, 4));
@@ -161,11 +161,11 @@ public class Muller {
 				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));
 				Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
-				System.out.printf("%5d%15s%15s%15s%15s%15s%15s%15s%15s\n", i, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
+				System.out.printf("%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
 				if (i>100) break;
 				if (Ea == 0)break;
 			}
-			System.out.print("--------------------------------------------------------------------------------------------------------------------------------");
+			System.out.print("---------------------------------------------------------------------------------------------");
 			System.out.print("\nThe root is approximately "+format.format(xx3));
 						
 			scanner.close();

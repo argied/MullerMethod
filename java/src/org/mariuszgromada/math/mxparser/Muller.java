@@ -55,8 +55,7 @@ public class Muller {
 			double b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
 			double c = rnd (f2.calculate(),4);
 			double d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
-			
-			double bd=0;
+			double bd =0;
 			if (b>=0)bd = rnd(b,4)+rnd(d,4);
 			if (b<=0)bd = rnd(b,4)-rnd(d,4);
 			double xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
@@ -77,7 +76,7 @@ public class Muller {
 				
 				xx0=xx1;
 				xx1=xx2;
-				xx2 = xx3;	
+				xx2 = xx3;		
 				
 				h0 = xx1-xx0;
 				h1 = xx2-xx1;
@@ -92,7 +91,7 @@ public class Muller {
 				if (b>=0)bd = rnd(b,4)+rnd(d,4);
 				if (b<=0)bd = rnd(b,4)-rnd(d,4);
 				
-				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));				
+				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));
 				Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
 				System.out.printf("%5d%15s%15s%15s%15s%15s%15s%15s%15s\n", i, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
@@ -103,6 +102,14 @@ public class Muller {
 			
 			
 			//for 2nd table
+			f = new Function ("f(x) = "+function); 
+			x0 = new Argument ("x = "+xValue0);
+			x1 = new Argument ("x = "+xValue1);
+			x2 = new Argument ("x = "+xValue2);
+
+			f0 = new Expression ("f(x)", f, x0);
+			f1 = new Expression ("f(x)", f, x1);
+			f2 = new Expression ("f(x)", f, x2);	
 			System.out.print("\n\n--------------------------------------------------------------------------------------------------------------------------------");
 			System.out.printf("\n%s%11s%15s%15s%15s%15s%15s%15s%15s", "Iteration","d0", "d1", "a", "b", "c", "d", "x3", "Ea");
 			System.out.print("\n--------------------------------------------------------------------------------------------------------------------------------");

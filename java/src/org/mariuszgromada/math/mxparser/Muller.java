@@ -7,28 +7,27 @@ import java.util.Scanner;
 
 public class Muller {
 	
-		static double round(double value, int places) {
-			if (places < 0) throw new IllegalArgumentException();
-			BigDecimal bd = new BigDecimal(Double.toString(value));
-			bd = bd.setScale(places, RoundingMode.HALF_UP);
-			return bd.doubleValue();
+		static double rnd(double answer, int DCplace) {
+			BigDecimal decimal = new BigDecimal(Double.toString(answer));
+			decimal = decimal.setScale(DCplace, RoundingMode.HALF_UP);
+			return decimal.doubleValue();
 			}
 	
 		public static void main (String [] args) {		
-			Scanner input = new Scanner(System.in);
-			DecimalFormat df = new DecimalFormat("#.####"); 
-			df.setRoundingMode(RoundingMode.HALF_UP);
+			Scanner scanner = new Scanner(System.in);
+			DecimalFormat format = new DecimalFormat("#.####"); 
+			format.setRoundingMode(RoundingMode.HALF_UP);
 			        
-			System.out.print("Enter function: ");
-			String function = input.nextLine();
-			System.out.print("Enter value of x0: ");
-			String xValue0 = input.nextLine();
-			System.out.print("Enter value of x1: ");
-			String xValue1 = input.nextLine();
-			System.out.print("Enter value of x2: ");
-			String xValue2 = input.nextLine();
-			System.out.print("Enter value of Ea: ");
-			double ea = input.nextDouble();
+			System.out.print("\nInput f(x): ");
+			String function = scanner.nextLine();
+			System.out.print("Input x0: ");
+			String xValue0 = scanner.nextLine();
+			System.out.print("Input x1: ");
+			String xValue1 = scanner.nextLine();
+			System.out.print("Input x2: ");
+			String xValue2 = scanner.nextLine();
+			System.out.print("Input Ea: ");
+			double ea = scanner.nextDouble();
 
 			Function f = new Function ("f(x) = "+function); 
 			Argument x0 = new Argument ("x = "+xValue0);
@@ -49,24 +48,24 @@ public class Muller {
 
 			double h0 = xx1-xx0;
 			double h1 = xx2-xx1;
-			double d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
-			double d1 = (round (f2.calculate(),4)-round (f1.calculate(),4))/round(h1,4);
+			double d0 = (rnd (f1.calculate(),4)-rnd (f0.calculate(),4))/rnd(h0,4);
+			double d1 = (rnd (f2.calculate(),4)-rnd (f1.calculate(),4))/rnd(h1,4);
 			
-			double a = (round(d1,4)-round(d0,4))/(round(h1,4)+round(h0,4));
-			double b = (round(a,4)*round(h1,4)) +round(d1,4);
-			double c = round (f2.calculate(),4);
-			double d = Math.sqrt(round (Math.pow(b, 2),4)-(4*round(a,4)*round(c,4)));
+			double a = (rnd(d1,4)-rnd(d0,4))/(rnd(h1,4)+rnd(h0,4));
+			double b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
+			double c = rnd (f2.calculate(),4);
+			double d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
 			
 			double bd=0;
-			if (b>=0)bd = round(b,4)+round(d,4);
-			if (b<=0)bd = round(b,4)-round(d,4);
-			double xx3 = xx2+((-2*round(c,4))/(round(bd,4)));
-			double Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
-			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));
+			if (b>=0)bd = rnd(b,4)+rnd(d,4);
+			if (b<=0)bd = rnd(b,4)-rnd(d,4);
+			double xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
+			double Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
+			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
 			for (int i = 2; Ea>ea;i++) {
-				String newX0 = String.valueOf(round(xx1, 4));
-				String newX1 = String.valueOf(round(xx2, 4));
-				String newX2 = String.valueOf(round(xx3, 4));
+				String newX0 = String.valueOf(rnd(xx1, 4));
+				String newX1 = String.valueOf(rnd(xx2, 4));
+				String newX2 = String.valueOf(rnd(xx3, 4));
 
 				Argument test0= new Argument ("x = "+newX0);
 				Argument test1= new Argument ("x = "+newX1);
@@ -82,21 +81,21 @@ public class Muller {
 				
 				h0 = xx1-xx0;
 				h1 = xx2-xx1;
-				d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
-				d1 = (round (f2.calculate(),4)-round (f1.calculate(),4))/round(h1,4);
+				d0 = (rnd (f1.calculate(),4)-rnd (f0.calculate(),4))/rnd(h0,4);
+				d1 = (rnd (f2.calculate(),4)-rnd (f1.calculate(),4))/rnd(h1,4);
 				
-				a = (round(d1,4)-round(d0,4))/(round(h1,4)+round(h0,4));
-				b = (round(a,4)*round(h1,4)) +round(d1,4);
-				c = round (f2.calculate(),4);
-				d = Math.sqrt(round (Math.pow(b, 2),4)-(4*round(a,4)*round(c,4)));
+				a = (rnd(d1,4)-rnd(d0,4))/(rnd(h1,4)+rnd(h0,4));
+				b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
+				c = rnd (f2.calculate(),4);
+				d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
 				
-				if (b>=0)bd = round(b,4)+round(d,4);
-				if (b<=0)bd = round(b,4)-round(d,4);
+				if (b>=0)bd = rnd(b,4)+rnd(d,4);
+				if (b<=0)bd = rnd(b,4)-rnd(d,4);
 				
-				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));				
-				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
+				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));				
+				Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
-				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));         
+				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));         
 				if (i>100) break;
 				if (Ea == 0)break;
 			}
@@ -123,23 +122,23 @@ public class Muller {
 
 			h0 = xx1-xx0;
 			h1 = xx2-xx1;
-			d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
-			d1 = (round (f2.calculate(),4)-round (f1.calculate(),4))/round(h1,4);
+			d0 = (rnd (f1.calculate(),4)-rnd (f0.calculate(),4))/rnd(h0,4);
+			d1 = (rnd (f2.calculate(),4)-rnd (f1.calculate(),4))/rnd(h1,4);
 			
-			a = (round(d1,4)-round(d0,4))/(round(h1,4)+round(h0,4));
-			b = (round(a,4)*round(h1,4)) +round(d1,4);
-			c = round (f2.calculate(),4);
-			d = Math.sqrt(round (Math.pow(b, 2),4)-(4*round(a,4)*round(c,4)));
+			a = (rnd(d1,4)-rnd(d0,4))/(rnd(h1,4)+rnd(h0,4));
+			b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
+			c = rnd (f2.calculate(),4);
+			d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
 			
-			if (b>=0)bd = round(b,4)+round(d,4);
-			if (b<=0)bd = round(b,4)-round(d,4);
-			xx3 = xx2+((-2*round(c,4))/(round(bd,4)));
-			Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
-			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));
+			if (b>=0)bd = rnd(b,4)+rnd(d,4);
+			if (b<=0)bd = rnd(b,4)-rnd(d,4);
+			xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
+			Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
+			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));
 			for (int i = 2; Ea>ea;i++) {
-				String newX0 = String.valueOf(round(xx1, 4));
-				String newX1 = String.valueOf(round(xx2, 4));
-				String newX2 = String.valueOf(round(xx3, 4));
+				String newX0 = String.valueOf(rnd(xx1, 4));
+				String newX1 = String.valueOf(rnd(xx2, 4));
+				String newX2 = String.valueOf(rnd(xx3, 4));
 
 				Argument test0= new Argument ("x = "+newX0);
 				Argument test1= new Argument ("x = "+newX1);
@@ -155,28 +154,28 @@ public class Muller {
 				
 				h0 = xx1-xx0;
 				h1 = xx2-xx1;
-				d0 = (round (f1.calculate(),4)-round (f0.calculate(),4))/round(h0,4);
-				d1 = (round (f2.calculate(),4)-round (f1.calculate(),4))/round(h1,4);
+				d0 = (rnd (f1.calculate(),4)-rnd (f0.calculate(),4))/rnd(h0,4);
+				d1 = (rnd (f2.calculate(),4)-rnd (f1.calculate(),4))/rnd(h1,4);
 				
-				a = (round(d1,4)-round(d0,4))/(round(h1,4)+round(h0,4));
-				b = (round(a,4)*round(h1,4)) +round(d1,4);
-				c = round (f2.calculate(),4);
-				d = Math.sqrt(round (Math.pow(b, 2),4)-(4*round(a,4)*round(c,4)));
+				a = (rnd(d1,4)-rnd(d0,4))/(rnd(h1,4)+rnd(h0,4));
+				b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
+				c = rnd (f2.calculate(),4);
+				d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
 				
-				if (b>=0)bd = round(b,4)+round(d,4);
-				if (b<=0)bd = round(b,4)-round(d,4);
+				if (b>=0)bd = rnd(b,4)+rnd(d,4);
+				if (b<=0)bd = rnd(b,4)-rnd(d,4);
 				
-				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));
-				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
+				xx3 = rnd(xx2,4)+((-2*rnd(c,4))/(rnd(bd,4)));
+				Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
-				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));          
+				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
 				if (i>100) break;
 				if (Ea == 0)break;
 			}
 			System.out.print("----------------------------------------------------------------------------------------");
-			System.out.print("\nThe root is approximately "+df.format(xx3));
+			System.out.print("\nThe root is approximately "+format.format(xx3));
 						
-			input.close();
+			scanner.close();
 			
 	}
 }

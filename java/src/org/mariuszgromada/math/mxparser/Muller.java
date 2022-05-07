@@ -64,7 +64,7 @@ public class Muller {
 			double Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));
 			int i =2;
-			while (Ea>ea) {
+			for (i = 2; Ea>ea;i++) {
 				String newX0 = String.valueOf(round(xx1, 4));
 				String newX1 = String.valueOf(round(xx2, 4));
 				String newX2 = String.valueOf(round(xx3, 4));
@@ -97,13 +97,11 @@ public class Muller {
 				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));				
 				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 
-				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));
-				i++;            
+				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(xx0), df.format(xx1), df.format(xx2), df.format(f0.calculate()), df.format(f1.calculate()), df.format(f2.calculate()), df.format(h0),df.format(h1));         
 				if (i>100) break;
 				if (Ea == 0)break;
 			}
 			System.out.print("----------------------------------------------------------------------------------------");
-			
 			
 			
 			//for 2nd table
@@ -140,7 +138,7 @@ public class Muller {
 			Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 			System.out.printf("\n%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", 1, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));
 			i = 2;
-			while (Ea>ea) {
+			for (i = 2; Ea>ea;i++) {
 				String newX0 = String.valueOf(round(xx1, 4));
 				String newX1 = String.valueOf(round(xx2, 4));
 				String newX2 = String.valueOf(round(xx3, 4));
@@ -173,8 +171,7 @@ public class Muller {
 				xx3 = round(xx2,4)+((-2*round(c,4))/(round(bd,4)));
 				Ea = Math.abs((round(xx3,4) -round(xx2,4) )/round(xx3,4))*100;
 
-				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));
-				i++;            
+				System.out.printf("%5d%10s%10s%10s%10s%10s%10s%10s%10s\n", i, df.format(d0), df.format(d1), df.format(a), df.format(b), df.format(c), df.format(d), df.format(xx3), df.format(Ea));          
 				if (i>100) break;
 				if (Ea == 0)break;
 			}

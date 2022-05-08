@@ -173,6 +173,6 @@ public class Muller {
 		System.out.print("---------------------------------------------------------------------------------------------");
 		System.out.print("\nROOT: "+ format.format(xx3));
 
-		return (format.format(xx3));
+		return "";
 	}
 }

@@ -1,9 +1,10 @@
 package org.mariuszgromada.math.mxparser;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 
 public class Muller {
 	

@@ -13,8 +13,20 @@ public class Muller {
 		decimal = decimal.setScale(DCplace, RoundingMode.HALF_UP);
 		return decimal.doubleValue();
 	}
-
-	static String muller(String function, String xValue0, String xValue1, String xValue2, double ea) {
+	
+	public static void main (String [] args) {		
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("\nInput f(x): ");
+		String function = scanner.nextLine();
+		System.out.print("Input x0: ");
+		String xValue0 = scanner.nextLine();
+		System.out.print("Input x1: ");
+		String xValue1 = scanner.nextLine();
+		System.out.print("Input x2: ");
+		String xValue2 = scanner.nextLine();
+		System.out.print("Input Ea: ");
+		double ea = scanner.nextDouble();
+		
 		DecimalFormat format = new DecimalFormat("#.####"); 
 		format.setRoundingMode(RoundingMode.HALF_UP);
 
@@ -156,24 +168,6 @@ public class Muller {
 		}
 		System.out.print("---------------------------------------------------------------------------------------------");
 		System.out.print("\nROOT: "+ format.format(xx3));
-
-		return "";
-	}
-	
-	public static void main (String [] args) {		
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("\nInput f(x): ");
-		String function = scanner.nextLine();
-		System.out.print("Input x0: ");
-		String xValue0 = scanner.nextLine();
-		System.out.print("Input x1: ");
-		String xValue1 = scanner.nextLine();
-		System.out.print("Input x2: ");
-		String xValue2 = scanner.nextLine();
-		System.out.print("Input Ea: ");
-		double ea = scanner.nextDouble();
-
-		muller (function,xValue0,xValue1,xValue2, ea);			
 
 		scanner.close();
 	}

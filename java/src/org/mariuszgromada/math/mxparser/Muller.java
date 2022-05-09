@@ -7,13 +7,13 @@ import java.text.DecimalFormat;
 
 
 public class Muller {
-	
+
 	static double rnd(double answer, int DCplace) {
 		BigDecimal decimal = new BigDecimal(Double.toString(answer));
 		decimal = decimal.setScale(DCplace, RoundingMode.HALF_UP);
 		return decimal.doubleValue();
 	}
-	
+
 	public static void main (String [] args) {		
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("\nInput f(x): ");
@@ -26,7 +26,7 @@ public class Muller {
 		String xValue2 = scanner.nextLine();
 		System.out.print("Input Ea: ");
 		double ea = scanner.nextDouble();
-		
+
 		DecimalFormat format = new DecimalFormat("#.####"); 
 		format.setRoundingMode(RoundingMode.HALF_UP);
 
@@ -56,12 +56,16 @@ public class Muller {
 		double b = (rnd(a,4)*rnd(h1,4)) +rnd(d1,4);
 		double c = rnd (f2.calculate(),4);
 		double d = Math.sqrt(rnd (Math.pow(b, 2),4)-(4*rnd(a,4)*rnd(c,4)));
+		
 		double bd =0;
 		if (b>=0)bd = rnd(b,4)+rnd(d,4);
 		if (b<=0)bd = rnd(b,4)-rnd(d,4);
+		
 		double xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
 		double Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
+		
 		System.out.printf("\n%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
+		
 		for (int i = 2; Ea>ea;i++) {
 			String newX0 = String.valueOf(rnd(xx1, 4));
 			String newX1 = String.valueOf(rnd(xx2, 4));
@@ -75,8 +79,8 @@ public class Muller {
 			f1 = new Expression ("f(x)", f, test1);
 			f2 = new Expression ("f(x)", f, test2);
 
-			xx0=xx1;
-			xx1=xx2;
+			xx0 = xx1;
+			xx1 = xx2;
 			xx2 = xx3;		
 
 			h0 = xx1-xx0;
@@ -96,16 +100,16 @@ public class Muller {
 			Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
 			System.out.printf("%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(xx0), format.format(xx1), format.format(xx2), format.format(f0.calculate()), format.format(f1.calculate()), format.format(f2.calculate()), format.format(h0),format.format(h1));
-			if (i>100) break;
 			if (Ea == 0)break;
 		}
 		System.out.print("---------------------------------------------------------------------------------------------");
 
 
-		//for 2nd table
+		//for 2nd table kay kun 1 table lang, tam-an ka laba. di ma fit in one screen
 		f0 = new Expression ("f(x)", f, x0);
 		f1 = new Expression ("f(x)", f, x1);
-		f2 = new Expression ("f(x)", f, x2);	
+		f2 = new Expression ("f(x)", f, x2);
+		
 		System.out.print("\n\n---------------------------------------------------------------------------------------------");
 		System.out.printf("\n%s%11s%10s%10s%10s%10s%10s%10s%10s", "Iteration","d0", "d1", "a", "b", "c", "d", "x3", "Ea");
 		System.out.print("\n---------------------------------------------------------------------------------------------");
@@ -126,9 +130,12 @@ public class Muller {
 
 		if (b>=0)bd = rnd(b,4)+rnd(d,4);
 		if (b<=0)bd = rnd(b,4)-rnd(d,4);
+		
 		xx3 = xx2+((-2*rnd(c,4))/(rnd(bd,4)));
 		Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
+		
 		System.out.printf("\n%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", 1, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
+		
 		for (int i = 2; Ea>ea;i++) {
 			String newX0 = String.valueOf(rnd(xx1, 4));
 			String newX1 = String.valueOf(rnd(xx2, 4));
@@ -142,8 +149,8 @@ public class Muller {
 			f1 = new Expression ("f(x)", f, test1);
 			f2 = new Expression ("f(x)", f, test2);
 
-			xx0=xx1;
-			xx1=xx2;
+			xx0 = xx1;
+			xx1 = xx2;
 			xx2 = xx3;		
 
 			h0 = xx1-xx0;
@@ -163,7 +170,6 @@ public class Muller {
 			Ea = Math.abs((rnd(xx3,4) -rnd(xx2,4) )/rnd(xx3,4))*100;
 
 			System.out.printf("%5d%15s%10s%10s%10s%10s%10s%10s%10s\n", i, format.format(d0), format.format(d1), format.format(a), format.format(b), format.format(c), format.format(d), format.format(xx3), format.format(Ea));          
-			if (i>100) break;
 			if (Ea == 0)break;
 		}
 		System.out.print("---------------------------------------------------------------------------------------------");
